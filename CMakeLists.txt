@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 project(neuron)
 
+option(DISABLE_DATALAYERS "Disable datalayers plugin" OFF)
+
 enable_testing()
 
 enable_language(C)
@@ -195,7 +197,9 @@ add_subdirectory(plugins/mqtt)
 add_subdirectory(plugins/ekuiper)
 add_subdirectory(plugins/file)
 add_subdirectory(plugins/monitor)
-add_subdirectory(plugins/datalayers)
+if(NOT DISABLE_DATALAYERS)
+  add_subdirectory(plugins/datalayers)
+endif()
 
 add_subdirectory(simulator)
 
